@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactNative from 'react-native';
 import Greeting from './Greeting';
 
-// Workaround - 
+// Workaround - when I try to get these Fuctions from the import, vs code doesn't give me any intellisense
 const { Image, AppRegistry, View} = ReactNative;
 
 export default class Bananas extends React.Component<any, any> {
