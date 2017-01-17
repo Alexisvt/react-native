@@ -1,25 +1,40 @@
 // @flow
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Switch } from 'react-native';
 
 interface IRowProps {
   text: string;
+  complete: boolean;
+  onComplete: Function;
 }
 
 export default class Row extends Component {
 
   props: IRowProps;
 
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+
+    const {complete} = this.props;
+
     return (
-      <View style={style.container}>
-        <Text style={style.text}>{this.props.text}</Text>
+      <View style={styles.container}>
+        <Switch
+          value={complete}
+          onValueChange={this.props.onComplete}
+          />
+        <View style={styles.textWrap}>
+          <Text style={[styles.text, complete && styles.complete]}>{this.props.text}</Text>
+        </View>
       </View>
     );
   }
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     padding: 10,
     flexDirection: 'row',
@@ -29,5 +44,12 @@ const style = StyleSheet.create({
   text: {
     fontSize: 24,
     color: '#4d4d4d'
+  },
+  textWrap: {
+    flex: 1,
+    marginHorizontal: 10
+  },
+  complete: {
+    textDecorationLine: 'line-through'
   }
 });
